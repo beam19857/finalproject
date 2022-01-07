@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-proxy
+
+zuul:
+  prefix: /api
+  ignoredServices: '*'
+  routes:
+    user-service:
+      path: /user/**
+      stripPrefix: false
+    image-service:
+      path: /image/**
+      stripPrefix: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - '*'
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka
