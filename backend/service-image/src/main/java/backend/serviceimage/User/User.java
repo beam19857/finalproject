@@ -1,8 +1,9 @@
-package backend.service.User;
+package backend.serviceimage.User;
 
-import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.Data;
 
 @Data
 @Document

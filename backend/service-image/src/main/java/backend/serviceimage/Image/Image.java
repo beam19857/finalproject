@@ -1,7 +1,8 @@
 package backend.serviceimage.Image;
 
-
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import org.apache.catalina.User;
 import org.springframework.data.annotation.Id;
@@ -11,12 +12,39 @@ import lombok.Data;
 
 @Data
 @Document
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Image {
     @Id
     private String id;
     private String image;
-    private List<User> userId;
+    private String address;
+    private String user;
 
+    public String getUser() {
+        return this.user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<User> getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(List<User> userId) {
+        this.userId = userId;
+    }
+
+    private List<User> userId;
 
     public Image() {
     }

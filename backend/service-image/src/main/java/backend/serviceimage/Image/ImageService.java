@@ -1,20 +1,29 @@
 package backend.serviceimage.Image;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import backend.serviceimage.User.UserClient;
 
 @Service
 public class ImageService {
     @Autowired
     private ImageRepository imageRepository;
-
+    @Autowired
+    private UserClient userClient;
+     
     public List<Image> findAllImage() {
         return imageRepository.findAll();
     }
 
     public Image findImageById(String id) {
+        Optional<Image> image = imageRepository.findById(id);
+        image.ifPresent(o -> {
+            o.setUser(userClient.findUserByImageId(o.getId()));
+        });
         return imageRepository.findById(id).orElse(null);
     }
 
